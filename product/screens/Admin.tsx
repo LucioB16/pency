@@ -43,7 +43,7 @@ const AdminScreen: React.FC = () => {
   function closeDrawer() {
     setSelected(undefined);
   }
-
+/*
   React.useEffect(() => {
     toast({
       title: "Atención",
@@ -53,7 +53,7 @@ const AdminScreen: React.FC = () => {
       duration: null,
     });
   }, [toast]);
-
+*/
   return (
     <>
       <Flex direction="column" height="100%">
