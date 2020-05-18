@@ -34,3 +34,18 @@ export const MOCK_CART = [
     options: "Eleccion de Platos: Wok de Carne X2",
   },
 ];
+
+export const MEDIOS_PAGO = [
+  {
+    id: "Efectivo",
+    nombre: "Efectivo",
+  },
+  {
+    id: "Tarjeta de crédito",
+    nombre: "Tarjeta de crédito",
+  },
+  {
+    id: "Tarjeta de débito",
+    nombre: "Tarjeta de débito",
+  },
+];

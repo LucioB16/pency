@@ -13,20 +13,29 @@ import {
   Text,
   Button,
   IconButton,
+  Select,
+  Input,
 } from "@chakra-ui/core";
 
 import {useCart} from "../hooks";
 
 import WhatsAppIcon from "~/ui/icons/WhatsApp";
 import Badge from "~/ui/feedback/Badge";
+import { monitorEventLoopDelay } from "perf_hooks";
 
 interface Props {
   isOpen: boolean;
   onClose: () => void;
 }
 
+
 const CartDrawer: React.FC<Props> = ({isOpen, onClose}) => {
-  const {items, count, total, remove, checkout} = useCart();
+  const {items, count, total, MEDIOS_PAGO, remove, checkout, selectPago} = useCart();
+
+  function handleChange(event: React.ChangeEvent<HTMLSelectElement>){
+    // TODO: VER QUE HACER SI ES EFECTIVO
+    return selectPago(event.target.value.toString())
+  }
 
   React.useEffect(() => {
     if (!count) onClose();
@@ -77,6 +86,12 @@ const CartDrawer: React.FC<Props> = ({isOpen, onClose}) => {
         <DrawerFooter padding={4}>
           <Stack spacing={4} width="100%">
             <Divider />
+            <Select id="pago" name="pago" onChange={handleChange} placeholder="Seleccioná un medio de pago">
+              {MEDIOS_PAGO.map(({id, nombre}) => (
+                <option value={id}>{nombre}</option>
+              ))}
+            </Select>
+            <Input id="monto" placeholder="Con cuanto vas a pagar?"></Input>
             <Flex alignItems="center" justifyContent="flex-end">
               <Text fontSize="lg" fontWeight="600" mr={2}>
                 Total:

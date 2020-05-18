@@ -92,8 +92,14 @@ const CartProvider = ({children}: Props) => {
     window.open(`https://wa.me/${phone}?text=${encodeURI(getMessage(message, items))}`, "_blank");
   }
 
+  function selectPago(id: String) {
+    if(id == "Efectivo"){
+      console.log("Habilitar Input de monto efectivo")
+    }
+  }
+
   const state: State = {items, cart};
-  const actions: Actions = {add, remove, checkout};
+  const actions: Actions = {add, remove, checkout, selectPago};
 
   return <CartContext.Provider value={{state, actions}}>{children}</CartContext.Provider>;
 };

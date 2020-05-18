@@ -3,17 +3,20 @@ import React from "react";
 import CartContext from "./context";
 import {getTotal, getCount} from "./selectors";
 import {CartItem} from "./types";
+import {MEDIOS_PAGO} from "./constants"
 
 export function useCart() {
   const {
     state: {items, cart},
-    actions: {add, remove, checkout},
+    actions: {add, remove, checkout, selectPago},
   } = React.useContext(CartContext);
 
   return {
     add,
     remove,
     checkout,
+    selectPago,
+    MEDIOS_PAGO,
     cart,
     items,
     count: getCount(items),

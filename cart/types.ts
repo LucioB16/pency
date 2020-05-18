@@ -23,6 +23,7 @@ export interface Actions {
   add: (product: Product) => void;
   remove: (id: CartItem["id"]) => void;
   checkout: () => void;
+  selectPago: (id: String) => void;
 }
 
 export interface Context {
