@@ -17,7 +17,7 @@ export type Cart = Record<string, CartItem>;
 export interface State {
   items: CartItem[];
   cart: Cart;
-  checkout: Checkout;
+  iCheckout: Checkout;
 }
 
 export interface Actions {

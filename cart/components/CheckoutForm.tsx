@@ -38,7 +38,10 @@ const CheckoutForm: React.FC<Props> = ({ defaultValues = {}, children, onSubmit 
 
     function handleChange(event: React.ChangeEvent<HTMLSelectElement>){
         if(event.target.value.toString() == "Efectivo"){
-            
+            // TODO: Habilitar input de monto
+        }
+        else{
+            // TODO: Inhabilitar input de monto
         }
     }
 

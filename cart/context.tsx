@@ -24,6 +24,7 @@ const CartProvider = ({children}: Props) => {
   const {message, phone} = useTenant();
   const [cart, setCart] = React.useState<Cart>({});
   const items = React.useMemo(() => [].concat(...Object.values(cart)), [cart]);
+  const [iCheckout, setCheckout] = React.useState<Checkout>();
 
   function add(product: Product) {
     log("product_add", {
@@ -100,7 +101,7 @@ const CartProvider = ({children}: Props) => {
     }
   }
 
-  const state: State = {items, cart,};
+  const state: State = {items, cart, iCheckout};
   const actions: Actions = {add, remove, checkout, selectPago};
 
   return <CartContext.Provider value={{state, actions}}>{children}</CartContext.Provider>;

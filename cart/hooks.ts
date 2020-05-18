@@ -40,3 +40,11 @@ export function useCheckout() {
 
   return checkout;
 }
+
+export function useCheckoutActions() {
+  const {
+    actions: {checkout},
+  } = React.useContext(CheckoutContext);
+
+  return {checkout};
+}
