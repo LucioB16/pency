@@ -24,7 +24,7 @@ interface Props {
 }
 
 const CheckoutForm: React.FC<Props> = ({ defaultValues = {}, children, onSubmit }) => {
-    const {total, MEDIOS_PAGO, checkout, selectPago} = useCart();
+    const {total, MEDIOS_PAGO, checkout, confirmCheckout} = useCart();
     
     const { handleSubmit: submit, errors, register, control, formState } = useForm<Checkout>({
         defaultValues,

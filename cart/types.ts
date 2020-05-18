@@ -17,13 +17,13 @@ export type Cart = Record<string, CartItem>;
 export interface State {
   items: CartItem[];
   cart: Cart;
-  iCheckout: Checkout;
+  checkout: Checkout;
 }
 
 export interface Actions {
   add: (product: Product) => void;
   remove: (id: CartItem["id"]) => void;
-  checkout: (iCheckout: Checkout) => void;
+  confirmCheckout: (checkout: Checkout) => void;
   selectPago: (id: String) => void;
 }
 

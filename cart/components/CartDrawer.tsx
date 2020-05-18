@@ -32,11 +32,11 @@ interface Props {
 
 
 const CartDrawer: React.FC<Props> = ({ isOpen, onClose }) => {
-  const { items, count, total, MEDIOS_PAGO, remove, checkout, selectPago } = useCart();
-  const iCheckout = useCheckout();
+  const { items, count, total, MEDIOS_PAGO, remove, confirmCheckout, selectPago } = useCart();
+  const checkout = useCheckout();
   
-  function handleUpdate(iCheckout: Checkout){
-    return checkout(iCheckout);
+  function handleUpdate(checkout: Checkout){
+    return confirmCheckout(checkout);
   }
 
   React.useEffect(() => {
@@ -86,7 +86,7 @@ const CartDrawer: React.FC<Props> = ({ isOpen, onClose }) => {
           </Stack>
         </DrawerBody>
         <DrawerFooter padding={4}>
-          <CheckoutForm defaultValues={iCheckout} onSubmit={handleUpdate}>
+          <CheckoutForm defaultValues={checkout} onSubmit={handleUpdate}>
             {({form, isLoading, submit}) => (
               <Stack spacing={4} width="100%">
                 {form}

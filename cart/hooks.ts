@@ -8,18 +8,19 @@ import {MEDIOS_PAGO} from "./constants"
 
 export function useCart() {
   const {
-    state: {items, cart},
-    actions: {add, remove, checkout, selectPago},
+    state: {items, cart, checkout},
+    actions: {add, remove, confirmCheckout, selectPago},
   } = React.useContext(CartContext);
 
   return {
     add,
     remove,
-    checkout,
+    confirmCheckout,
     selectPago,
     MEDIOS_PAGO,
     cart,
     items,
+    checkout,
     count: getCount(items),
     total: getTotal(items),
   };
@@ -43,8 +44,8 @@ export function useCheckout() {
 
 export function useCheckoutActions() {
   const {
-    actions: {checkout},
+    actions: {confirmCheckout},
   } = React.useContext(CheckoutContext);
 
-  return {checkout};
+  return {confirmCheckout};
 }
