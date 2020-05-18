@@ -17,11 +17,13 @@ import {
   Input,
 } from "@chakra-ui/core";
 
-import {useCart} from "../hooks";
+import { useCart, useCheckout } from "../hooks";
 
 import WhatsAppIcon from "~/ui/icons/WhatsApp";
 import Badge from "~/ui/feedback/Badge";
 import { monitorEventLoopDelay } from "perf_hooks";
+import CheckoutForm from "./CheckoutForm";
+import { Checkout } from "../types";
 
 interface Props {
   isOpen: boolean;
@@ -29,12 +31,12 @@ interface Props {
 }
 
 
-const CartDrawer: React.FC<Props> = ({isOpen, onClose}) => {
-  const {items, count, total, MEDIOS_PAGO, remove, checkout, selectPago} = useCart();
-
-  function handleChange(event: React.ChangeEvent<HTMLSelectElement>){
-    // TODO: VER QUE HACER SI ES EFECTIVO
-    return selectPago(event.target.value.toString())
+const CartDrawer: React.FC<Props> = ({ isOpen, onClose }) => {
+  const { items, count, total, MEDIOS_PAGO, remove, checkout, selectPago } = useCart();
+  const iCheckout = useCheckout();
+  
+  function handleUpdate(iCheckout: Checkout){
+    return checkout(iCheckout);
   }
 
   React.useEffect(() => {
@@ -49,7 +51,7 @@ const CartDrawer: React.FC<Props> = ({isOpen, onClose}) => {
         <DrawerHeader p={4}>Tu carrito ({count})</DrawerHeader>
         <DrawerBody overflowY="auto" p={4}>
           <Stack spacing={6}>
-            {items.map(({id, title, options, price, count}) => (
+            {items.map(({ id, title, options, price, count }) => (
               <Flex key={id} alignItems="center" justifyContent="space-between">
                 <Flex alignItems="center" mr={2}>
                   <IconButton
@@ -84,31 +86,30 @@ const CartDrawer: React.FC<Props> = ({isOpen, onClose}) => {
           </Stack>
         </DrawerBody>
         <DrawerFooter padding={4}>
-          <Stack spacing={4} width="100%">
-            <Divider />
-            <Select id="pago" name="pago" onChange={handleChange} placeholder="Seleccioná un medio de pago">
-              {MEDIOS_PAGO.map(({id, nombre}) => (
-                <option value={id}>{nombre}</option>
-              ))}
-            </Select>
-            <Input id="monto" placeholder="Con cuanto vas a pagar?"></Input>
-            <Flex alignItems="center" justifyContent="flex-end">
-              <Text fontSize="lg" fontWeight="600" mr={2}>
-                Total:
-              </Text>
-              <Text fontSize="lg">${total}</Text>
-            </Flex>
-            <Button
-              backgroundColor="green.400"
-              color="white"
-              variantColor="green"
-              w="100%"
-              onClick={checkout}
-            >
-              <WhatsAppIcon marginRight={2} />
-              Completar pedido en WhatsApp
-            </Button>
-          </Stack>
+          <CheckoutForm defaultValues={iCheckout} onSubmit={handleUpdate}>
+            {({form, isLoading, submit}) => (
+              <Stack spacing={4} width="100%">
+                {form}
+                <Flex alignItems="center" justifyContent="flex-end">
+                  <Text fontSize="lg" fontWeight="600" mr={2}>
+                      Total:
+                  </Text>
+                  <Text fontSize="lg">${total}</Text>
+                </Flex>
+                <Button
+                  backgroundColor="green.400"
+                  color="white"
+                  variantColor="green"
+                  w="100%"
+                  onClick={submit}
+                >
+                  <WhatsAppIcon marginRight={2} />
+                  Completar pedido en WhatsApp
+                </Button>
+              </Stack>
+            )}
+
+          </CheckoutForm>
         </DrawerFooter>
       </DrawerContent>
     </Drawer>

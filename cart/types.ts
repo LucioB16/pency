@@ -17,12 +17,13 @@ export type Cart = Record<string, CartItem>;
 export interface State {
   items: CartItem[];
   cart: Cart;
+  checkout: Checkout;
 }
 
 export interface Actions {
   add: (product: Product) => void;
   remove: (id: CartItem["id"]) => void;
-  checkout: () => void;
+  checkout: (iCheckout: Checkout) => void;
   selectPago: (id: String) => void;
 }
 
@@ -32,3 +33,9 @@ export interface Context {
 }
 
 export type Status = "init" | "pending";
+
+export interface Checkout{
+  pago: string;
+  monto?: string;
+  domicilio: string;
+}

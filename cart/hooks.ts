@@ -1,6 +1,7 @@
 import React from "react";
 
 import CartContext from "./context";
+import CheckoutContext from "./context";
 import {getTotal, getCount} from "./selectors";
 import {CartItem} from "./types";
 import {MEDIOS_PAGO} from "./constants"
@@ -30,4 +31,12 @@ export function useProductCartCount(id: CartItem["product"]) {
   } = React.useContext(CartContext);
 
   return items.filter((item) => item.product === id).reduce((count, item) => count + item.count, 0);
+}
+
+export function useCheckout() {
+  const {
+    state: {checkout},
+  } = React.useContext(CheckoutContext);
+
+  return checkout;
 }

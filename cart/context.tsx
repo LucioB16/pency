@@ -4,7 +4,7 @@ import produce from "immer";
 
 import {Product} from "../product/types";
 
-import {CartItem, Context, State, Actions, Cart} from "./types";
+import {CartItem, Context, State, Actions, Cart, Checkout} from "./types";
 import {getSummary, getMessage} from "./selectors";
 
 import {useAnalytics} from "~/analytics/hooks";
@@ -16,6 +16,8 @@ interface Props {
 }
 
 const CartContext = React.createContext({} as Context);
+
+const CheckoutContext = React.createContext({} as Context);
 
 const CartProvider = ({children}: Props) => {
   const log = useAnalytics();
@@ -89,7 +91,7 @@ const CartProvider = ({children}: Props) => {
       items,
     });
 
-    window.open(`https://wa.me/${phone}?text=${encodeURI(getMessage(message, items))}`, "_blank");
+    window.open(`https://wa.me/${phone}?text=${encodeURI(getMessage(message, items, "Efectivo"))}`, "_blank");
   }
 
   function selectPago(id: String) {
@@ -98,7 +100,7 @@ const CartProvider = ({children}: Props) => {
     }
   }
 
-  const state: State = {items, cart};
+  const state: State = {items, cart,};
   const actions: Actions = {add, remove, checkout, selectPago};
 
   return <CartContext.Provider value={{state, actions}}>{children}</CartContext.Provider>;

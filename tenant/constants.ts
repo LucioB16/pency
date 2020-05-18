@@ -13,6 +13,8 @@ export const DEFAULT_TENANT = {
 
 Total: {{total}}
 
+Pago con: {{pago}}
+
 Gracias.`,
 };
 
