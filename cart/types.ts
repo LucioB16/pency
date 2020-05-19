@@ -25,6 +25,7 @@ export interface Actions {
   remove: (id: CartItem["id"]) => void;
   confirmCheckout: (checkout: Checkout) => void;
   selectPago: (id: String) => void;
+  setDomicilio: (domi: String) => void;
 }
 
 export interface Context {

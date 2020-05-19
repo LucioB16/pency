@@ -24,7 +24,7 @@ interface Props {
 }
 
 const CheckoutForm: React.FC<Props> = ({ defaultValues = {}, children, onSubmit }) => {
-    const {total, MEDIOS_PAGO, checkout, confirmCheckout} = useCart();
+    const {total, MEDIOS_PAGO} = useCart();
     
     const { handleSubmit: submit, errors, register, control, formState } = useForm<Checkout>({
         defaultValues,
@@ -53,6 +53,20 @@ const CheckoutForm: React.FC<Props> = ({ defaultValues = {}, children, onSubmit 
                 <Stack spacing={4} width="100%">
                     <Divider />
                     <FormControl
+                        isRequired
+                        error={errors.domicilio && (errors.domicilio.message || "Este campo es inválido")}
+                        isInvalid={Boolean(errors.domicilio)}
+                        label="Domicilio"
+                        name="domicilio"
+                    >
+                        <Input
+                            ref={register({required: true})}
+                            name="domicilio"
+                            placeholder="Ingresá tu domicilio"
+                        />
+                    </FormControl>
+                    <FormControl
+                        isRequired
                         label="Medio de pago"
                         name="pago"
                     >

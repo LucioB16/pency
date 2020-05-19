@@ -25,6 +25,8 @@ const CartProvider = ({children}: Props) => {
   const [cart, setCart] = React.useState<Cart>({});
   const items = React.useMemo(() => [].concat(...Object.values(cart)), [cart]);
   const [checkout, setCheckout] = React.useState<Checkout>();
+  let pago: string = "";
+  let domicilio: string = "";
 
   function add(product: Product) {
     log("product_add", {
@@ -91,18 +93,20 @@ const CartProvider = ({children}: Props) => {
       description: getSummary(items),
       items,
     });
-    
-    window.open(`https://wa.me/${phone}?text=${encodeURI(getMessage(message, items, checkout.pago))}`, "_blank");
+
+    window.open(`https://wa.me/${phone}?text=${encodeURI(getMessage(message, items, pago, domicilio))}`, "_blank");
   }
 
-  function selectPago(id: String) {
-    if(id == "Efectivo"){
-      console.log("Habilitar Input de monto efectivo")
-    }
+  function selectPago(id: string) {
+    pago = id;
+  }
+
+  function setDomicilio(domi: string){
+    domicilio = domi;
   }
 
   const state: State = {items, cart, checkout};
-  const actions: Actions = {add, remove, confirmCheckout, selectPago};
+  const actions: Actions = {add, remove, confirmCheckout, selectPago, setDomicilio};
 
   return <CartContext.Provider value={{state, actions}}>{children}</CartContext.Provider>;
 };

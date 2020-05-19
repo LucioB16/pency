@@ -15,6 +15,8 @@ Total: {{total}}
 
 Pago con: {{pago}}
 
+Entregar en: {{domicilio}}
+
 Gracias.`,
 };
 

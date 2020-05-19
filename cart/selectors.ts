@@ -30,9 +30,10 @@ export function getItems(items: CartItem[]): string {
     .join("\n");
 }
 
-export function getMessage(message: string, items: CartItem[], pago: string): string {
+export function getMessage(message: string, items: CartItem[], pago: string, domicilio: string): string {
   return message
     .replace(`{{productos}}`, getItems(items))
     .replace(`{{total}}`, `$${getTotal(items)}`)
-    .replace(`{{pago}}`, pago);
+    .replace(`{{pago}}`, pago)
+    .replace(`{{domicilio}}`, domicilio);
 }

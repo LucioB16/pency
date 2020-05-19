@@ -9,7 +9,7 @@ import {MEDIOS_PAGO} from "./constants"
 export function useCart() {
   const {
     state: {items, cart, checkout},
-    actions: {add, remove, confirmCheckout, selectPago},
+    actions: {add, remove, confirmCheckout, selectPago, setDomicilio},
   } = React.useContext(CartContext);
 
   return {
@@ -17,6 +17,7 @@ export function useCart() {
     remove,
     confirmCheckout,
     selectPago,
+    setDomicilio,
     MEDIOS_PAGO,
     cart,
     items,

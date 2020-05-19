@@ -32,11 +32,18 @@ interface Props {
 
 
 const CartDrawer: React.FC<Props> = ({ isOpen, onClose }) => {
-  const { items, count, total, MEDIOS_PAGO, remove,} = useCart();
+  const { items, count, total, MEDIOS_PAGO, remove, selectPago, setDomicilio} = useCart();
   const checkout = useCheckout();
   const {confirmCheckout} = useCheckoutActions();
   
   function handleUpdate(checkout: Checkout){
+    if(Boolean(checkout.monto)){
+      selectPago(checkout.pago + " $" + checkout.monto);
+    }
+    else{
+      selectPago(checkout.pago);
+    }
+    setDomicilio(checkout.domicilio)
     return confirmCheckout(checkout);
   }
 

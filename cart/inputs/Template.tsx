@@ -13,7 +13,7 @@ const TemplateInput: React.FC<Props> = ({value, onChange}) => {
   const [isEnabled, setEnabled] = React.useState(false);
   const preview = React.useMemo(() => {
     try {
-      return value ? getMessage(value, MOCK_CART, "Efectivo") : "";
+      return value ? getMessage(value, MOCK_CART, "Efectivo", "Avenida Siempre Viva 742") : "";
     } catch (e) {
       return `ERROR: Este mensaje no es valido: ${e}`;
     }
