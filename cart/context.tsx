@@ -91,8 +91,8 @@ const CartProvider = ({children}: Props) => {
       description: getSummary(items),
       items,
     });
-
-    window.open(`https://wa.me/${phone}?text=${encodeURI(getMessage(message, items, "Efectivo"))}`, "_blank");
+    
+    window.open(`https://wa.me/${phone}?text=${encodeURI(getMessage(message, items, checkout.pago))}`, "_blank");
   }
 
   function selectPago(id: String) {

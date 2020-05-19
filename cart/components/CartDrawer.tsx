@@ -17,7 +17,7 @@ import {
   Input,
 } from "@chakra-ui/core";
 
-import { useCart, useCheckout } from "../hooks";
+import { useCart, useCheckout, useCheckoutActions } from "../hooks";
 
 import WhatsAppIcon from "~/ui/icons/WhatsApp";
 import Badge from "~/ui/feedback/Badge";
@@ -32,8 +32,9 @@ interface Props {
 
 
 const CartDrawer: React.FC<Props> = ({ isOpen, onClose }) => {
-  const { items, count, total, MEDIOS_PAGO, remove, confirmCheckout, selectPago } = useCart();
+  const { items, count, total, MEDIOS_PAGO, remove,} = useCart();
   const checkout = useCheckout();
+  const {confirmCheckout} = useCheckoutActions();
   
   function handleUpdate(checkout: Checkout){
     return confirmCheckout(checkout);
