@@ -77,7 +77,7 @@ const CheckoutForm: React.FC<Props> = ({ defaultValues = {}, children, onSubmit 
                         </Select>
                     </FormControl>
                     <FormControl
-                        isRequired
+                        isRequired={false}
                         error={errors.monto && (errors.monto.message || "Este campo es inválido")}
                         isInvalid={Boolean(errors.monto)}
                         label="Monto"
@@ -87,6 +87,7 @@ const CheckoutForm: React.FC<Props> = ({ defaultValues = {}, children, onSubmit 
                             ref={register({required: true, pattern: /^[0-9]+(\,[0-9]{1,2})?$/})} 
                             name="monto"
                             placeholder="Con cuanto vas a pagar?"
+                            defaultValue={total}
                             min={total}
                             type="number"
                         />
