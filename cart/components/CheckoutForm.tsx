@@ -80,7 +80,7 @@ const CheckoutForm: React.FC<Props> = ({ defaultValues = {}, children, onSubmit 
                         isRequired={false}
                         error={errors.monto && (errors.monto.message || "Este campo es inválido")}
                         isInvalid={Boolean(errors.monto)}
-                        label="Monto"
+                        label="Con cuanto vas a pagar?"
                         name="monto"
                     >
                         <Input
