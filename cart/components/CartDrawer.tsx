@@ -98,6 +98,7 @@ const CartDrawer: React.FC<Props> = ({ isOpen, onClose }) => {
             {({form, isLoading, submit}) => (
               <Stack spacing={4} width="100%">
                 {form}
+                <Divider />
                 <Flex alignItems="center" justifyContent="flex-end">
                   <Text fontSize="lg" fontWeight="600" mr={2}>
                       Total:
