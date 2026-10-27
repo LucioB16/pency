@@ -1,29 +1,30 @@
 # Pency
-Tu tienda online
 
-## Qué es?
-Pency es una tienda online multipropósito, pensada para quienes venden (o quieren vender) via WhatsApp.
+**Un catálogo online que lleva el pedido hasta WhatsApp.**
 
-## Qué tiene?
-* Catálogo online
-* Panel de administración para cargar productos
-* Carrito de compra
-* Imagen, precio y descripción para cada producto
-* Opciones para cada producto (pueden modificar el precio del producto)
-* Envío del pedido via WhatsApp
-* Configuración de la tienda (color, título, descripción, imagen, logo, etc)
+Pency reúne productos, variantes y un carrito en una tienda configurable. En lugar de integrar un checkout complejo, prepara el pedido para enviarlo por WhatsApp. Este repositorio es un **fork histórico** del proyecto original (código y dependencias de 2020), no una tienda moderna mantenida activamente.
 
-## Algo no me anda!
-Podés crear un `issue` acá en GitHub
+| Para quien compra | Para quien administra | Para la tienda |
+| :-- | :-- | :-- |
+| Catálogo, detalle de productos y carrito. | Carga y edición de productos y variantes. | Imagen, título, colores y enlace de pedido por WhatsApp. |
 
-## Quiero ayudar!
-Entrá a los `issues` acá en GitHub
+## Primeros pasos
 
-## Quiero mi tienda!
-Mandame un mail a gonzalo.pozzo4@gmail.com
+La aplicación usa **Next.js, React, Firebase y Cloudinary**. Para ejecutarla, necesitás configurar servicios externos y las variables de [`.env.template`](.env.template). Las instrucciones originales de desarrollo y creación de una tienda están más abajo; pueden requerir ajustes por la antigüedad de las dependencias.
 
-## Tengo otra pregunta
-Mandame un mail a gonzalo.pozzo4@gmail.com
+> [!NOTE]
+> Este proyecto fue desarrollado originalmente por otra persona. Para consultas históricas y atribución, conservamos los datos de contacto de la documentación upstream. La licencia [CC BY-NC-SA 4.0](LICENSE.md) **restringe el uso comercial**; leé sus términos antes de reutilizar el código.
+
+## Qué incluye
+
+- Catálogo con imágenes, precios, descripciones y opciones que pueden alterar el precio.
+- Panel de administración para gestionar productos.
+- Carrito que prepara el pedido para WhatsApp.
+- Personalización visual de la tienda.
+
+## Soporte y proyecto original
+
+La documentación upstream indica abrir issues en GitHub y brinda el contacto `gonzalo.pozzo4@gmail.com`. Este fork no implica soporte activo del autor original.
 
 ## ¿Cómo puedo correr el proyecto?
 Completá todas las variables que aparecen en `.env.template` y guardalo como `.env.development`
@@ -75,5 +76,5 @@ npm install && npm run dev
  -  Para acceder al panel de administración debemos entrar mediante el siguiente link: `http://localhost:3000/NOMBRE_DE_TU_TIENDA/admin`
  > Tomá en cuenta que ya que usamos el uid del usuario como id del documento, no podémos tener mas de un usuario por tienda ni tampoco mas de una tienda por usuario.
 
-## Qué puedo hacer con Pency?
+## Licencia y reutilización
 Podés leer la licencia [acá](./LICENSE.md). En resumen, podés usar Pency para lo que quieras mientras no lucres con eso y menciones la fuente original cuando lo uses 🥰.
